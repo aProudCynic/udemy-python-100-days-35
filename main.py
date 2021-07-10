@@ -1,6 +1,9 @@
 import requests
 
-from const import OPEN_WEATHER_API_BASE
+from const import (
+    OPEN_WEATHER_API_BASE,
+    OPEN_WEATHER_EXCLUDED_DATA,
+)
 from secrets import (
     HOME_LATITUDE,
     HOME_LONGITUDE,
@@ -12,8 +15,9 @@ response = requests.get(
     params={
         'lat': HOME_LATITUDE,
         'lon': HOME_LONGITUDE,
+        'exclude': OPEN_WEATHER_EXCLUDED_DATA,
         'appid': OPEN_WEATHER_API_KEY,
     }
 )
-print(response.status_code)
-print(response.json())
+response.raise_for_status()
+print(response.content)
