@@ -1,5 +1,4 @@
 OPEN_WEATHER_API_BASE = "https://api.openweathermap.org/data/2.5/onecall"
-CITY_NAME_AND_REGION_CODE = "Budapest,HU"
 OPEN_WEATHER_EXCLUDED_DATA = 'current,minutely,daily'
 MIN_WEATHER_CODE_TO_NOT_INDICATE_PRECIPITATION = 700
 LENGTH_OF_HOURS_TO_EXAMINE = 12
