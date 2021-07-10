@@ -46,8 +46,8 @@ def send_warning_sms():
     client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
     message = client.messages.create(
         to=TWILIO_TEST_PHONE_NUMBER,
-        messaging_service_sid = TWILIO_MESSAGING_SERVICE_SID,
-        body = 'Bring an umbrella',
+        messaging_service_sid=TWILIO_MESSAGING_SERVICE_SID,
+        body='Bring an umbrella',
     )
 
 
