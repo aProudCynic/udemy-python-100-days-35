@@ -13,7 +13,11 @@ from secrets import (
     HOME_LATITUDE,
     HOME_LONGITUDE,
     OPEN_WEATHER_API_KEY,
+    TWILIO_ACCOUNT_SID,
+    TWILIO_AUTH_TOKEN, TWILIO_TEST_PHONE_NUMBER,
+    TWILIO_MESSAGING_SERVICE_SID,
 )
+from twilio.rest import Client
 
 
 def fetch_weather_data():
@@ -40,6 +44,16 @@ def umbrella_is_needed(hourly_data):
     return False
 
 
+def send_warning_sms():
+    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+    message = client.messages.create(
+        to=TWILIO_TEST_PHONE_NUMBER,
+        messaging_service_sid = TWILIO_MESSAGING_SERVICE_SID,
+        body = 'Bring an umbrella',
+    )
+
+
 response_content = fetch_weather_data()
 hourly_data = response_content['hourly']
-print('Bring an umbrella' if umbrella_is_needed(hourly_data) else 'No need for umbrella')
+if umbrella_is_needed(hourly_data):
+    send_warning_sms()
