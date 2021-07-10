@@ -35,7 +35,7 @@ def umbrella_is_needed(hourly_data):
         examined_hourly_data = hourly_data[hour]
         weather_data = examined_hourly_data['weather']
         for weather_details in weather_data:
-            if weather_details['id'] < MIN_WEATHER_CODE_TO_NOT_INDICATE_PRECIPITATION:
+            if int(weather_details['id']) < MIN_WEATHER_CODE_TO_NOT_INDICATE_PRECIPITATION:
                 return True
     return False
 
